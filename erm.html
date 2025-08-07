@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刘立波 - AI技术栈思维导图</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: #f9fafb;
+        }
+        /* Custom styles for connecting lines */
+        .connector-line {
+            position: absolute;
+            background-color: #d1d5db; /* gray-300 */
+            z-index: 0;
+        }
+        .node {
+            z-index: 10;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto px-4 py-12 md:py-16">
+
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900">AI大模型技术栈思维导图</h1>
+            <p class="mt-3 text-lg md:text-xl text-blue-600 font-semibold">技术作用与相互关系</p>
+        </header>
+
+        <div class="flex flex-col items-center space-y-16">
+            <!-- Core Foundation -->
+            <div class="node bg-blue-100 border-2 border-blue-500 text-blue-800 font-semibold py-3 px-6 rounded-lg shadow-md">
+                核心基础: Python
+            </div>
+
+            <!-- Connecting Lines from Core to Layers -->
+            <div class="relative w-full h-12">
+                <div class="connector-line" style="width: 2px; height: 100%; left: 50%; top: 0;"></div>
+            </div>
+
+            <!-- Main Layers -->
+            <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16 relative">
+                 <!-- Horizontal connecting line -->
+                <div class="connector-line hidden md:block" style="height: 2px; width: 66.66%; left: 16.67%; top: -3rem;"></div>
+                 <!-- Vertical connecting lines from horizontal bar to each layer -->
+                <div class="connector-line hidden md:block" style="width: 2px; height: 3rem; left: 16.67%; top: -3rem;"></div>
+                <div class="connector-line hidden md:block" style="width: 2px; height: 3rem; left: 50%; top: -3rem;"></div>
+                <div class="connector-line hidden md:block" style="width: 2px; height: 3rem; right: 16.67%; top: -3rem;"></div>
+
+
+                <!-- Application Layer -->
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="node bg-indigo-100 border-2 border-indigo-500 text-indigo-800 font-semibold py-3 px-6 rounded-lg shadow-md w-full text-center">
+                        应用层: LLM应用框架
+                    </div>
+                    <div class="node bg-white border border-gray-300 py-2 px-4 rounded-md w-full text-center">LangChain</div>
+                    <div class="node bg-white border border-gray-300 py-2 px-4 rounded-md w-full text-center">LlamaIndex</div>
+                </div>
+
+                <!-- Data & Model Layer -->
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="node bg-green-100 border-2 border-green-500 text-green-800 font-semibold py-3 px-6 rounded-lg shadow-md w-full text-center">
+                        数据与模型层
+                    </div>
+                    <div class="node bg-white border border-gray-300 py-2 px-4 rounded-md w-full text-center">模型库: Transformers, Diffusers</div>
+                    <div class="node bg-white border border-gray-300 py-2 px-4 rounded-md w-full text-center">向量数据库: Milvus, FAISS, Chroma</div>
+                </div>
+
+                <!-- Serving & Deployment Layer -->
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="node bg-amber-100 border-2 border-amber-500 text-amber-800 font-semibold py-3 px-6 rounded-lg shadow-md w-full text-center">
+                        服务与部署层
+                    </div>
+                    <div class="node bg-white border border-gray-300 py-2 px-4 rounded-md w-full text-center">推理服务: vLLM</div>
+                    <div class="node bg-white border border-gray-300 py-2 px-4 rounded-md w-full text-center">推理服务: TensorRT-LLM, TGI</div>
+                </div>
+            </div>
+             <div class="mt-12 text-center text-gray-600">
+                <p><strong>关系说明:</strong></p>
+                <p><strong>Python</strong> 作为核心语言，是所有层的基础。</p>
+                <p><strong>应用层 (LangChain)</strong> 负责编排，调用<strong>模型层</strong>的能力，并集成<strong>数据层</strong>的向量数据库，最终通过<strong>服务层</strong>的推理服务来执行。</p>
+            </div>
+        </div>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-200">
+            <p class="text-gray-500">这是一个使用HTML和CSS构建的思维导图，以确保在所有环境下都能正确显示。</p>
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI大模型技术栈 - 快速学习路径图</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: white;
+            border: 4px solid #3b82f6; /* blue-500 */
+        }
+        .timeline-line {
+            position: absolute;
+            left: -21px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 2rem); /* 100% + gap-8 */
+            background-color: #d1d5db; /* gray-300 */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto px-4 py-16">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 tracking-tight">AI大模型技术栈</h1>
+            <p class="mt-4 text-lg text-blue-600 font-semibold">快速学习路径图</p>
+            <p class="mt-2 max-w-2xl mx-auto text-gray-600">结合您深厚的工程背景，这条路径将助您快速构建生产级AI应用。</p>
+        </header>
+
+        <div class="relative max-w-3xl mx-auto">
+            <!-- Timeline Line -->
+            <div class="timeline-line hidden md:block"></div>
+
+            <!-- Stage 1 -->
+            <div class="timeline-item relative md:pl-8 mb-16">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-blue-500 text-white text-sm font-semibold px-3 py-1 rounded-full">第一阶段 (1-2周)</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">掌握核心应用框架</h2>
+                    <p class="text-gray-600 mb-6">这是最关键的一步，能让您最快地“玩起来”，将AI能力与工程结合。</p>
+                    
+                    <div class="space-y-4">
+                        <h3 class="font-semibold text-lg text-gray-700">主攻: LangChain & Python</h3>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <p><strong><i class="fas fa-bullseye mr-2 text-blue-500"></i>目标:</strong> 能够使用 LangChain 搭建一个完整的 RAG (检索增强生成) 应用。</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="font-semibold mb-2"><i class="fas fa-book mr-2 text-gray-500"></i>学习资源:</p>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li><a href="https://python.langchain.com/" target="_blank" class="text-blue-600 hover:underline">LangChain 官方文档</a> - 从 "Get Started" 和 "Cookbook" 入手。</li>
+                                <li><a href="https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/" target="_blank" class="text-blue-600 hover:underline">吴恩达 & LangChain 课程</a> - 快速掌握核心概念。</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="font-semibold mb-2"><i class="fas fa-lightbulb mr-2 text-gray-500"></i>实践项目: PDF问答机器人</p>
+                            <p class="text-gray-600">通过这个项目，您将掌握：文档加载与分割、模型调用、向量化与存储 (FAISS/Chroma)、构建Chain等全流程。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="timeline-item relative md:pl-8 mb-16">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-green-500 text-white text-sm font-semibold px-3 py-1 rounded-full">第二阶段 (2-3周)</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">深入模型与推理服务</h2>
+                    <p class="text-gray-600 mb-6">了解“黑盒子”里有什么，并学会如何让它跑得更快、更省。</p>
+                    
+                    <div class="space-y-4">
+                         <h3 class="font-semibold text-lg text-gray-700">主攻: Hugging Face 生态 & 高性能推理</h3>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <p><strong><i class="fas fa-bullseye mr-2 text-green-500"></i>目标:</strong> 将一个开源大模型通过专业的推理框架部署成一个高性能API服务。</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                             <p class="font-semibold mb-2"><i class="fas fa-rocket mr-2 text-gray-500"></i>实践路径:</p>
+                             <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                 <li><strong>入门:</strong> <a href="https://ollama.com/" target="_blank" class="text-blue-600 hover:underline">Ollama</a> - 一条命令在本地运行大模型，适合快速验证。</li>
+                                 <li><strong>进阶:</strong> <a href="https://github.com/vllm-project/vllm" target="_blank" class="text-blue-600 hover:underline">vLLM</a> - 学习业界领先的推理框架，感受极致性能。</li>
+                                 <li><strong>理解原理:</strong> 了解 PagedAttention、Continuous Batching 等优化技术。</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="timeline-item relative md:pl-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-purple-500 text-white text-sm font-semibold px-3 py-1 rounded-full">第三阶段 (持续实践)</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">构建生产级AI应用</h2>
+                    <p class="text-gray-600 mb-6">融会贯通，将您的DevOps经验与AI能力结合，打造可展示的完整项目。</p>
+                    
+                     <div class="space-y-4">
+                         <h3 class="font-semibold text-lg text-gray-700">项目构想: 企业知识库问答系统</h3>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <p><strong><i class="fas fa-bullseye mr-2 text-purple-500"></i>目标:</strong> 构建一个从数据处理到部署监控的全流程生产级AI应用。</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                             <p class="font-semibold mb-2"><i class="fas fa-cogs mr-2 text-gray-500"></i>技术选型:</p>
+                             <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                 <li><strong>后端:</strong> FastAPI / Spring Boot</li>
+                                 <li><strong>AI核心:</strong> LangChain + <a href="https://milvus.io/" target="_blank" class="text-blue-600 hover:underline">Milvus</a> + vLLM</li>
+                                 <li><strong>部署:</strong> Docker + Kubernetes</li>
+                                 <li><strong>监控:</strong> Prometheus + Grafana</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="text-center mt-20 pt-10 border-t border-gray-300">
+            <p class="text-gray-500">祝您学习顺利，快速成为一名顶尖的AI大模型应用开发工程师！</p>
+        </footer>
+    </div>
+
+</body>
+</html>

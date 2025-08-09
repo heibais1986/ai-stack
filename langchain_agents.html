@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LangChain - Agents</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .code-block pre {
+            padding: 1rem;
+            margin: 0;
+        }
+        .nav-item {
+            transition: all 0.2s ease;
+        }
+        .nav-item:hover {
+            background-color: #e5e7eb;
+        }
+        .active-nav {
+            background-color: #e5e7eb;
+            border-left: 4px solid #3b82f6;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="flex min-h-screen">
+        <!-- Sidebar Navigation -->
+        <div class="w-64 bg-white border-r border-gray-200 hidden md:block">
+            <div class="p-4 border-b border-gray-200">
+                <div class="flex items-center">
+                    <img src="https://deeplearning.ai/static/favicons/favicon-32x32.png" alt="DeepLearning.AI Logo" class="h-8 w-8">
+                    <span class="ml-2 font-semibold text-blue-600">DeepLearning.AI</span>
+                </div>
+                <h2 class="mt-4 text-lg font-semibold">LangChain for LLM Application Development</h2>
+            </div>
+            <nav class="p-2">
+                <div class="text-sm font-medium text-gray-500 mb-2 px-2">Course Modules</div>
+                <ul>
+                    <li><a href="#" class="nav-item block px-2 py-2 rounded-md">Models, Prompts and Parsers</a></li>
+                    <li><a href="#" class="nav-item block px-2 py-2 rounded-md">Memory</a></li>
+                    <li><a href="#" class="nav-item block px-2 py-2 rounded-md">Chains</a></li>
+                    <li><a href="#" class="nav-item active-nav block px-2 py-2 rounded-md">Agents</a></li>
+                    <li><a href="#" class="nav-item block px-2 py-2 rounded-md">QnA</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-auto">
+            <!-- Top Navigation -->
+            <div class="bg-white border-b border-gray-200 p-4 flex justify-between items-center sticky top-0 z-10">
+                <button class="md:hidden text-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <div class="flex items-center space-x-4">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Next Lesson</button>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="max-w-4xl mx-auto p-6">
+                <h1 class="text-3xl font-bold mb-6">Agents</h1>
+                
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4">Introduction to Agents</h2>
+                    <p class="mb-4">
+                        Agents use an LLM to determine which actions to take and in what order. An action can either be using a tool and observing its output, or returning a response to the user.
+                    </p>
+                    <p class="mb-4">
+                        In this lesson, you'll learn how to use LangChain to create agents that can dynamically select and use tools based on user input.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4">Setting Up</h2>
+                    <p class="mb-4">First, let's install the necessary packages and import the modules we'll need.</p>
+                    <div class="code-block mb-4">
+                        <pre>pip install langchain openai</pre>
+                    </div>
+                    <div class="code-block">
+<pre>import os
+from langchain.agents import AgentType, initialize_agent, load_tools
+from langchain.llms import OpenAI
+
+# Set your OpenAI API key
+os.environ["OPENAI_API_KEY"] = "your-api-key"</pre>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4">Creating a Simple Agent</h2>
+                    <p class="mb-4">
+                        Let's create a simple agent that can use search and calculator tools to answer questions.
+                    </p>
+                    <div class="code-block mb-4">
+<pre>llm = OpenAI(temperature=0)
+
+# Load some tools to use
+tools = load_tools(["serpapi", "llm-math"], llm=llm)
+
+# Create an agent that uses these tools
+agent = initialize_agent(
+    tools, 
+    llm, 
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+    verbose=True
+)</pre>
+                    </div>
+                    <p class="mb-4">
+                        Now we can run the agent with a query:
+                    </p>
+                    <div class="code-block">
+<pre>agent.run("What was the high temperature in SF yesterday in Fahrenheit? What is that number raised to the .023 power?")</pre>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4">Agent Types</h2>
+                    <p class="mb-4">
+                        LangChain provides several agent types for different use cases:
+                    </p>
+                    <ul class="list-disc pl-6 mb-4 space-y-2">
+                        <li><strong>ZERO_SHOT_REACT_DESCRIPTION</strong>: Uses the ReAct framework to determine which tool to use based solely on the tool's description.</li>
+                        <li><strong>STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION</strong>: A more structured version that works well with chat models.</li>
+                        <li><strong>OPENAI_FUNCTIONS</strong>: Uses OpenAI's function calling capability for more reliable tool usage.</li>
+                        <li><strong>SELF_ASK_WITH_SEARCH</strong>: Designed specifically for search-based queries.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4">Custom Tools</h2>
+                    <p class="mb-4">
+                        You can create custom tools for your agents to use:
+                    </p>
+                    <div class="code-block">
+<pre>from langchain.agents import Tool
+from langchain.utilities import GoogleSearchAPIWrapper
+
+search = GoogleSearchAPIWrapper()
+tools = [
+    Tool(
+        name="Google Search",
+        description="Search Google for recent information",
+        func=search.run
+    )
+]
+
+agent = initialize_agent(
+    tools, 
+    llm, 
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+    verbose=True
+)</pre>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4">Agent with Memory</h2>
+                    <p class="mb-4">
+                        You can add memory to agents to maintain context across multiple interactions:
+                    </p>
+                    <div class="code-block">
+<pre>from langchain.memory import ConversationBufferMemory
+
+memory = ConversationBufferMemory(memory_key="chat_history")
+agent = initialize_agent(
+    tools, 
+    llm, 
+    agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
+    memory=memory,
+    verbose=True
+)</pre>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8">
+                    <h3 class="text-lg font-semibold text-blue-800 mb-2">Key Takeaways</h3>
+                    <ul class="list-disc pl-6 space-y-1 text-blue-800">
+                        <li>Agents use LLMs to determine which actions to take based on user input</li>
+                        <li>Tools provide specific capabilities to agents</li>
+                        <li>Different agent types are optimized for different use cases</li>
+                        <li>You can create custom tools to extend agent capabilities</li>
+                        <li>Adding memory allows agents to maintain context across conversations</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4">Exercise</h2>
+                    <p class="mb-4">
+                        Try creating an agent that can help with coding tasks by combining the Python REPL tool with a search tool.
+                    </p>
+                    <div class="code-block">
+<pre># Your code here
+tools = load_tools(["serpapi", "python_repl"], llm=llm)
+
+agent = initialize_agent(
+    tools, 
+    llm, 
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+    verbose=True
+)
+
+agent.run("Create a simple function to calculate the Fibonacci sequence and find the 10th Fibonacci number.")</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="bg-white border-t border-gray-200 p-6 mt-8">
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-gray-500">© 2023 DeepLearning.AI. All rights reserved.</p>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-500 hover:text-gray-700">Terms</a>
+                            <a href="#" class="text-gray-500 hover:text-gray-700">Privacy</a>
+                            <a href="#" class="text-gray-500 hover:text-gray-700">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
